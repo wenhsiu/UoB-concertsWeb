@@ -1,0 +1,91 @@
+#root {
+	color: #013243;
+}
+
+.row {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.logo {
+	height: 100px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position:center;
+	vertical-align: middle;
+}
+
+.button_link {
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	height: 40px;
+	width: 125px;
+	margin: 0 20px 0 20px;
+}
+
+.button_link:hover, .like_list_button:hover {
+	color: skyblue;
+	border: 2px solid skyblue;
+} 
+
+.fa-heart {
+	font-size: 20px;
+}
+
+.like_list_button {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #cccccc;
+	outline: none;
+	box-sizing: border-box;
+	transition: 0.3s;
+	position: relative;
+	font-size: 15px;
+	border-radius: 5px;
+}
+
+.search_area, .search_button {
+	width: 300px;
+	height: 40px;
+	padding: 0px 10px;
+	border: 1px solid #cccccc;
+	outline: none;
+	box-sizing: border-box;
+	transition: 0.3s;
+	position: relative;
+	font-size: 15px;
+	border-radius: 5px 0 0 5px;
+}
+
+.search_button {
+	width: 40px;
+	margin-left: -5px;
+	border-radius: 0 5px 5px 0;
+}
+
+.fa-search {
+	color: #013243;
+}
+
+.search_button:hover {
+	background-color: #cccccc;
+}
+
+ul {
+	padding: 15px;
+	margin-bottom: 0;
+
+}
+li {
+	position: relative;
+	display: inline-block;
+	width: calc((100% / 6) - 10px);
+	margin-right: 10px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.col-3 {
+	max-width: 100%;
+}
+
