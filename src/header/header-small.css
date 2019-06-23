@@ -13,10 +13,14 @@
 	}
 }
 
-@media screen and (min-width: 568px) and (max-width: 750px) {
-	.logo, .loginUpload {
+@media screen and (max-width: 750px) {
+	.logo, .login_out, .search {
 		max-width: 100%;
 		margin-bottom: 20px;
+	}
+
+	.logo_img {
+		height: 100px;
 	}
 
 	.button_link {

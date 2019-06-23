@@ -21,12 +21,8 @@
 	height: 40px;
 	width: 125px;
 	margin: 0 20px 0 20px;
+	color: #013243;
 }
-
-.button_link:hover, .like_list_button:hover {
-	color: skyblue;
-	border: 2px solid skyblue;
-} 
 
 .fa-heart {
 	font-size: 20px;
@@ -42,6 +38,7 @@
 	position: relative;
 	font-size: 15px;
 	border-radius: 5px;
+	color: #013243;
 }
 
 .search_area, .search_button {
@@ -61,13 +58,10 @@
 	width: 40px;
 	margin-left: -5px;
 	border-radius: 0 5px 5px 0;
-}
-
-.fa-search {
 	color: #013243;
 }
 
-.search_button:hover {
+.search_button:hover, .button_link:hover, .like_list_button:hover {
 	background-color: #cccccc;
 }
 
