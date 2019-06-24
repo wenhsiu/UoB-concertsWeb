@@ -2,6 +2,10 @@
 	color: #013243;
 }
 
+.border-bottom {
+	border-bottom: 3px dashed #103!important;
+}
+
 .row {
 	margin: 0;
 	margin-bottom: 10px;
@@ -42,7 +46,6 @@
 }
 
 .search_area, .search_button {
-	width: 300px;
 	height: 40px;
 	padding: 0px 10px;
 	border: 1px solid #cccccc;
@@ -59,10 +62,16 @@
 	margin-left: -5px;
 	border-radius: 0 5px 5px 0;
 	color: #013243;
+	background-color: white;
 }
 
 .search_button:hover, .button_link:hover, .like_list_button:hover {
-	background-color: #cccccc;
+	background-color: #013243;
+	color: white
+}
+
+.form-inline {
+	display: inline;
 }
 
 ul {

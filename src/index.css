@@ -7,9 +7,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	height: 100%;
 	text-align: center;
-	color: #064155;
+	color: #013243;
 	background-color: #fcfbf6;
-	/*background-color: #e5f3f4;*/
 }
 
 code {
@@ -23,4 +22,8 @@ a {
 
 a:hover {
 	text-decoration: none;
+}
+
+.container-fluid {
+	margin-left: 250px;
 }
