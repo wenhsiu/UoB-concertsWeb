@@ -1,10 +1,12 @@
 #sidebar {
-	width: 250px;
 	position: fixed;
-
 	height: 100vh;
 	z-index: 999;
-	background: #7386D5;
-	color: #fff;
+	color: #013243;
 	transition: all 0.3s;
+	margin-top: 20px;
+}
+
+.sidebar-nav {
+	width: 300px;
 }

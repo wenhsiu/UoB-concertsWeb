@@ -1,0 +1,42 @@
+.DayPicker-Months {
+	border: 3px double #013243;
+	border-radius: 5px; 
+	
+}
+
+.DayPicker-Month {
+	margin-bottom: 1em;
+}
+
+.Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+	background-color: #f0f8ff !important;
+	color: #013243;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+	background-color: #013243;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+  background-color: #013243;
+}
+
+.DayPicker:not(.DayPicker--interactionDisabled)
+.DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+	background-color: #013243;
+	color: #f0f8ff;
+	border-radius: 50% !important;
+}
+
+.DayPicker-Day {
+	border-radius: 0 !important;
+}
+
+.DayPicker-Day--start {
+	border-top-left-radius: 50% !important;
+	border-bottom-left-radius: 50% !important;
+}
+.DayPicker-Day--end {
+	border-top-right-radius: 50% !important;
+	border-bottom-right-radius: 50% !important;
+}
