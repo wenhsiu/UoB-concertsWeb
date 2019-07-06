@@ -1,11 +1,11 @@
-#sidebar {
+/*#sidebar {
 	position: fixed;
 	height: 100vh;
 	z-index: 999;
 	color: #013243;
 	transition: all 0.3s;
 	margin-top: 20px;
-}
+}*/
 
 .sidebar-nav {
 	width: 300px;

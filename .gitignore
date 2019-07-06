@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+client/node_modules
 /.pnp
 .pnp.js
 
@@ -26,3 +27,7 @@ yarn-error.log*
 color code.pages
 logo.ai
 logo_icon.psd
+
+#database
+/db
+*.sql

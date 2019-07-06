@@ -52,7 +52,7 @@ class Header extends React.Component {
 
 	render() {
 		return(
-			<div className="title row align-items-center border-bottom">
+			<div className="title row align-items-center border-bottom ">
 				<div className="logo col-3 text-hide">
 					<img src={logo} className="logo_img" alt="logo" />
 					<a href="/homeItem.html" className="logo">Sharing within Bristol</a>
