@@ -17,9 +17,9 @@ const db = new sqlite3.Database('./db/concerts.db', (err) => {
 
 // get concert info from database
 router.get("/getConcertsInfo", (req, res) => {
-	var sql = "SELECT id, title, date, description, url, img FROM concert_info ORDER BY date;"
+	var cmd = "SELECT * FROM concert_info ORDER BY date;"
 	var params = []
-	db.all(sql, params, (err, rows) => {
+	db.all(cmd, params, (err, rows) => {
 		if(err){
 			res.status(400).send().end();
 		}else{

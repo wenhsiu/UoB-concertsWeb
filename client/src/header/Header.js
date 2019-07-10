@@ -1,10 +1,10 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './header.css';
 import './header-small.css';
 import logo from './logo.svg';
 import Login from '../user/Login';
 import Register from '../user/Register';
-// import User from '../user/User';
 
 
 class Header extends React.Component {
@@ -59,8 +59,7 @@ class Header extends React.Component {
 			<div className="title row align-items-center border-bottom ">
 				<div className="logo col-3 text-hide">
 					<img src={logo} className="logo_img" alt="logo" />
-					<a href="/homeItem.html" className="logo">Sharing within Bristol</a>
-					}
+					<NavLink to="/">Concerts in Taiwan</NavLink>
 				</div>
 				<div className="search col-4">
 					<form className="form-inline">
@@ -73,6 +72,11 @@ class Header extends React.Component {
 				<div className="login_out col-4">
 					<Register />
 					<Login />
+					<NavLink to="/Likelist">
+						<button className="like_list_button" type="button">
+							<i className="fas fa-heart "></i>
+						</button>
+					</NavLink>
 				</div>
 			</div>
 		)

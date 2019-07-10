@@ -114,10 +114,6 @@ class Login extends React.Component {
 						<Button color="secondary" onClick={this.toggle}>Forget Password</Button>
 					</ModalFooter>
 				</Modal>
-
-				<button className="like_list_button" type="button">
-					<i className="fas fa-heart "></i>
-				</button>
 			</span>
 		)
 	}

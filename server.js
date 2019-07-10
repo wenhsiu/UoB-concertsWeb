@@ -14,3 +14,4 @@ app.listen(port, () => {
 app.use(require('body-parser').json());
 app.use(require('./server_concertInfo'));
 app.use(require('./server_userInfo'));
+app.use(require('./server_likeList'));
