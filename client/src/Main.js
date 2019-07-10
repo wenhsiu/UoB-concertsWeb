@@ -17,7 +17,7 @@ class Main extends React.Component {
 					{/*<!-- Content -->*/}
 					<div id="content" className="col-8">
 						<Route exact path="/" component={Concerts}/>
-						<Route exact path="/Likelist" component={Likelist}/>
+						<Route path="/likelist" component={Likelist}/>
 					</div>	
 				</div>
 			</HashRouter>

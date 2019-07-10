@@ -2,18 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const sqlite3 = require('sqlite3').verbose();
-
+const db = require('./server_db.js');
 const path = require('path');
 const picPath = path.join(__dirname, 'db', 'concerts_images');
 
-// connect to database
-const db = new sqlite3.Database('./db/concerts.db', (err) => {
-	if (err) {
-		console.error(err.message);
-	}
-	console.log('Connected to the SQlite database.');
-});
 
 // user register
 router.post('/UserRegister', (req, res) => {

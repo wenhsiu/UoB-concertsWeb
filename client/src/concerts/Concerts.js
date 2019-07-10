@@ -9,10 +9,7 @@ class Concerts extends React.Component {
 			concertList: []
 		}
 
-		// this.setInfo = this.setInfo.bind(this);
 		this.display = this.display.bind(this);
-
-		// this.setInfo();
 	}
 
 	componentDidMount() {
@@ -25,16 +22,6 @@ class Concerts extends React.Component {
 		});
 	}
 
-	// setInfo() {
-	// 	axios.get("/getConcertsInfo").then((res) => {
-	// 		console.log(res.data);
-	// 		if(res.data.length === 0){return;}
-	// 		this.setState({
-	// 			concertList: res.data
-	// 		})		
-	// 	});
-	// }
-
 	navigatePage(url) {
 		window.open(url);
 	}
@@ -44,12 +31,16 @@ class Concerts extends React.Component {
 			this.state.concertList.map((element) => {
 				return(
 					<div className="row concert-info" key = {element.id}>
-						<img src={"/getImage/" + element.img} className="col-4" alt={element.title}/>
-						<div className="col-8 text-left">
+						<img src={"concerts_images/" + element.img} className="col-5" alt={element.title}/>
+						<div className="col-7 text-left">
 							<h5>{element.title}</h5>
 							<p>Date: {element.date}</p>
 							<p>{element.description}</p>
 							<div className="text-right">
+								<button className="like_button" type="button">
+									<i className="fas fa-heart like"></i>
+									<i className="far fa-heart notlike"></i>
+								</button>
 								<input className="concert_link" type="button" value="Info & Ticket" onClick={() => this.navigatePage(element.url)}/>
 							</div>
 						</div>

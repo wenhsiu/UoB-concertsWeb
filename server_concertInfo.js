@@ -2,23 +2,15 @@
 
 const express = require('express');
 const router = express.Router();
-const sqlite3 = require('sqlite3').verbose();
-
+const db = require('./server_db.js');
 const path = require('path');
-const picPath = path.join(__dirname, 'db', 'concerts_images');
+const picPath = path.join(__dirname, 'client', 'public', 'concerts_images');
 
-// connect to database
-const db = new sqlite3.Database('./db/concerts.db', (err) => {
-	if (err) {
-		console.error(err.message);
-	}
-	console.log('Connected to the SQlite database.');
-});
 
 // get concert info from database
 router.get("/getConcertsInfo", (req, res) => {
-	var cmd = "SELECT * FROM concert_info ORDER BY date;"
-	var params = []
+	let cmd = "SELECT * FROM concert_info ORDER BY date;"
+	let params = []
 	db.all(cmd, params, (err, rows) => {
 		if(err){
 			res.status(400).send().end();

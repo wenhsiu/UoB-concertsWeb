@@ -30,4 +30,5 @@ logo_icon.psd
 
 #database
 /db
+client/public/concerts_images/
 *.sql

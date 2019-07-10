@@ -58,8 +58,9 @@ class Header extends React.Component {
 		return(
 			<div className="title row align-items-center border-bottom ">
 				<div className="logo col-3 text-hide">
-					<img src={logo} className="logo_img" alt="logo" />
-					<NavLink to="/">Concerts in Taiwan</NavLink>
+					<NavLink to="/">
+						<img src={logo} className="logo_img" alt="logo" />
+					</NavLink>
 				</div>
 				<div className="search col-4">
 					<form className="form-inline">
@@ -72,7 +73,7 @@ class Header extends React.Component {
 				<div className="login_out col-4">
 					<Register />
 					<Login />
-					<NavLink to="/Likelist">
+					<NavLink to="/likelist">
 						<button className="like_list_button" type="button">
 							<i className="fas fa-heart "></i>
 						</button>

@@ -15,3 +15,24 @@
 	background-color: #013243;
 	color: white
 }
+
+.like_button {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #cccccc;
+	outline: none;
+	transition: 0.3s;
+	position: relative;
+	font-size: 15px;
+	border-radius: 5px;
+	color: red;
+	border-radius: 50%;
+}
+
+.like_button:hover .notlike, .like_button .like {
+	display: none;
+}
+
+.like_button:hover .like {
+	display: inline;
+}
