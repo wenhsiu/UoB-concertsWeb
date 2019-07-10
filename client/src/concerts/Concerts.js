@@ -11,20 +11,19 @@ class Concerts extends React.Component {
 
 		this.setInfo = this.setInfo.bind(this);
 		this.display = this.display.bind(this);
-		this.navigatePage = this.navigatePage.bind(this);
 
 		this.setInfo();
 	}
 
-	// componentDidMount() {
-	// 	axios.get("/getConcertsInfo").then((res) => {
-	// 		console.log(res.data);
-	// 		if(res.data.length === 0){return;}
-	// 		this.setState({
-	// 			concertList: res.data
-	// 		})		
-	// 	});
-	// }
+	componentDidMount() {
+		axios.get("/getConcertsInfo").then((res) => {
+			console.log(res.data);
+			if(res.data.length === 0){return;}
+			this.setState({
+				concertList: res.data
+			})		
+		});
+	}
 
 	setInfo() {
 		axios.get("/getConcertsInfo").then((res) => {
@@ -45,7 +44,7 @@ class Concerts extends React.Component {
 			this.state.concertList.map((element) => {
 				return(
 					<div className="row concert-info" key = {element.id}>
-						<img src={"/getImage/" + element.img} className="col-4" alt={element.title}/>
+						<img src="..." className="col-4" alt={element.title}/>
 						<div className="col-8 text-left">
 							<h5>{element.title}</h5>
 							<p>Date: {element.date}</p>

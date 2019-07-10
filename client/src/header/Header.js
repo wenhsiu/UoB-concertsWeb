@@ -2,6 +2,10 @@ import React from 'react';
 import './header.css';
 import './header-small.css';
 import logo from './logo.svg';
+import Login from '../user/Login';
+import Register from '../user/Register';
+// import User from '../user/User';
+
 
 class Header extends React.Component {
 
@@ -27,7 +31,7 @@ class Header extends React.Component {
 	}
 
 	setLoginOutButton() {
-		if(this.getCookie("username") != "") {
+		if(this.getCookie("username") !== "") {
 			return <input className = "button_link" type="button" value="Logout" onClick={this.deleteCookie} />
 		} else {
 			return <input className = "button_link" type="button" value="Login/Register" onClick={this.navigateToLogin} />
@@ -40,10 +44,10 @@ class Header extends React.Component {
 		var ca = decodedCookie.split(';');
 		for(var i = 0; i <ca.length; i++) {
 			var c = ca[i];
-			while (c.charAt(0) == ' ') {
+			while (c.charAt(0) === ' ') {
 				c = c.substring(1);
 			}
-			if (c.indexOf(name) == 0) {
+			if (c.indexOf(name) === 0) {
 				return c.substring(name.length, c.length);
 			}
 		}
@@ -58,7 +62,7 @@ class Header extends React.Component {
 					<a href="/homeItem.html" className="logo">Sharing within Bristol</a>
 					}
 				</div>
-				<div className="search col-6">
+				<div className="search col-4">
 					<form className="form-inline">
 						<input className="search_area form-control mr-sm-2" type="search" placeholder="search concerts" />
 						<button className="search_button btn my-2 my-sm-0" type="submit" value="search">
@@ -66,11 +70,9 @@ class Header extends React.Component {
 						</button>
 					</form>
 				</div>
-				<div className="login_out col3">
-					{this.setLoginOutButton()}
-					<button className="like_list_button" type="button">
-							<i className="fas fa-heart "></i>
-					</button>
+				<div className="login_out col-4">
+					<Register />
+					<Login />
 				</div>
 			</div>
 		)
@@ -78,4 +80,3 @@ class Header extends React.Component {
 }
 
 export default Header;
-

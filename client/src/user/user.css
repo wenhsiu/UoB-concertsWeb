@@ -1,0 +1,46 @@
+.email, .password {
+	width: 50%;
+	height: 40px;
+	padding: 0px 10px;
+	border: 1px solid #cccccc;
+	margin-bottom: -1px;
+	outline: none;
+	box-sizing: border-box;
+	transition: 0.3s;
+	padding-left: 40px;
+	position: relative;
+	font-size: 15px;
+}
+
+.email {
+	border-radius: 5px 5px 0 0;
+}
+
+.password {
+	border-radius: 0 0 5px 5px;
+}
+
+.new_member {
+	padding: 5px 0 30px;
+}
+
+span {
+	position: relative;
+	padding-right: 16px;
+	font-size: 16px;
+}
+
+.fa-user, .fa-lock {
+	position: absolute;
+	text-align: center;
+	left: 0;
+	padding: 10px;
+	font-size: 20px;
+	color: #cccccc;
+	transition: 0.3s;
+	margin-left: 27%;
+}
+
+input:focus + .fa-user, input:focus + .fa-lock {
+	color: #013243;
+}
