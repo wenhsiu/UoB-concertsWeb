@@ -29,7 +29,7 @@ router.get("/getConcertsInfo", (req, res) => {
 });
 
 // get images
-router.get("/getImage/:img", (req, res) => { 
+router.get("/getImage/:img", (req, res) => {
 	console.log(picPath + "/" + req.params.img);      
 	res.sendFile(picPath + "/" + req.params.img);
 })

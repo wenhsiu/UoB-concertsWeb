@@ -1,3 +1,17 @@
 .concert-info {
 	border-bottom: 1px solid #dee2e6!important;
 }
+
+.concert_link {
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	height: 40px;
+	width: 125px;
+	margin: 0 20px 0 20px;
+	color: #013243;
+}
+
+.concert_link:hover {
+	background-color: #013243;
+	color: white
+}
