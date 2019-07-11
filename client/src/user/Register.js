@@ -86,7 +86,7 @@ class Register extends React.Component {
 
 	setRegisterButton() {
 		if(this.getCookie("username") !== "") {
-			return <input className = "button_link d-none d-print-block" type="button" value="Register" onClick={this.deleteCookie} />
+			return <input className = "button_link d-none d-print-block" type="button" value="Register" />
 		} else {
 			return <input className = "button_link" type="button" value="Register" onClick={this.toggle} />
 		}

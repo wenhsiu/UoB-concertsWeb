@@ -36,3 +36,7 @@
 .like_button:hover .like {
 	display: inline;
 }
+
+.concert_img {
+	height: 100%;
+}

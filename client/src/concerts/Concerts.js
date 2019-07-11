@@ -31,7 +31,7 @@ class Concerts extends React.Component {
 			this.state.concertList.map((element) => {
 				return(
 					<div className="row concert-info" key = {element.id}>
-						<img src={"concerts_images/" + element.img} className="col-5" alt={element.title}/>
+						<img src={"concerts_images/" + element.img} className="concert_img col-5" alt={element.title}/>
 						<div className="col-7 text-left">
 							<h5>{element.title}</h5>
 							<p>Date: {element.date}</p>

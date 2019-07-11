@@ -52,7 +52,7 @@ class Likelist extends React.Component {
 			this.state.concertList.map((element) => {
 				return(
 					<div className="row concert-info" key = {element.id}>
-						<img src={"/getImage/" + element.img} className="col-4" alt={element.title}/>
+						<img src={"concerts_images/" + element.img} className="concert_img col-4" alt={element.title}/>
 						<div className="col-8 text-left">
 							<h5>{element.title}</h5>
 							<p>Date: {element.date}</p>
@@ -60,7 +60,7 @@ class Likelist extends React.Component {
 							<div className="text-right">
 								<button className="like_button" type="button">
 									<i className="fas fa-heart like"></i>
-									<i class="far fa-heart notlike"></i>
+									<i className="far fa-heart notlike"></i>
 								</button>
 								<input className="concert_link" type="button" value="Info & Ticket" onClick={() => this.navigatePage(element.url)}/>
 							</div>
