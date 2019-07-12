@@ -12,7 +12,7 @@ open the backend server and client server
 	- add it into the web server (??
 
 2. web application
-	- like buttom function
+	- like buttom function -> need to fix: click and reload immediatelly
 	- keyword search function
 	- date filter function
 

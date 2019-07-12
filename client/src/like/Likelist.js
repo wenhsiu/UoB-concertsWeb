@@ -8,7 +8,8 @@ class Likelist extends React.Component {
 		super(props);
 		this.state = {
 			user: "",
-			concertList: []
+			concertList: [],
+			id: ""
 		};
 
 		this.getCookie = this.getCookie.bind(this);
@@ -28,23 +29,45 @@ class Likelist extends React.Component {
 	}
 
 	getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-    }
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+		  var c = ca[i];
+		  while (c.charAt(0) === ' ') {
+			c = c.substring(1);
+		  }
+		  if (c.indexOf(name) === 0) {
+			return c.substring(name.length, c.length);
+		  }
+		}
+		return "";
+	}
 
 	navigatePage(url) {
 		window.open(url);
+	}
+
+	setLikeButton(e, id) {
+		let user = this.getCookie("username");
+
+		e.persist();
+		this.setState({ id: id }, () => {
+			// console.log(this.state.id);
+			if(user !== "") {
+			e.preventDefault();
+			axios.post('/likeConcert/' + user, this.state).then((res) => {
+				if(res.status === 200) {
+					console.log("Add/delete successfully");
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		} else {
+			this.toggle();
+		}
+		});
 	}
 
 	display() {
@@ -59,8 +82,7 @@ class Likelist extends React.Component {
 							<p>{element.description}</p>
 							<div className="text-right">
 								<button className="like_button" type="button">
-									<i className="fas fa-heart like"></i>
-									<i className="far fa-heart notlike"></i>
+									<i class="fas fa-times cancel"></i>
 								</button>
 								<input className="concert_link" type="button" value="Info & Ticket" onClick={() => this.navigatePage(element.url)}/>
 							</div>

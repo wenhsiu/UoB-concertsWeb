@@ -1,15 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import './concerts.css';
+import Likebutton from '../like/Likebutton';
 
 class Concerts extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			concertList: []
+			concertList: [],
+			isLiked: null
 		}
 
 		this.display = this.display.bind(this);
+		this.getCookie = this.getCookie.bind(this);
+		// this.checkLiked = this.checkLiked.bind(this);
 	}
 
 	componentDidMount() {
@@ -26,6 +30,45 @@ class Concerts extends React.Component {
 		window.open(url);
 	}
 
+	getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) === ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) === 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	checkLiked(e, id) {
+		let user = this.getCookie("username");
+
+		e.persist();
+		this.setState({ id: id }, () => {
+			if(user !== "") {
+				e.preventDefault();
+
+				axios.post('/checkLike/' + user, this.state).then((res) => {
+					this.setState({
+						isLiked: res.data
+					})
+					console.log("***" + this.state.isLiked);
+				})
+				.catch(function(err){
+					console.log(err);
+				});
+			}
+		});
+
+		// console.log(this.state.isAdded);
+	}
+
 	display() {
 		return(
 			this.state.concertList.map((element) => {
@@ -37,10 +80,7 @@ class Concerts extends React.Component {
 							<p>Date: {element.date}</p>
 							<p>{element.description}</p>
 							<div className="text-right">
-								<button className="like_button" type="button">
-									<i className="fas fa-heart like"></i>
-									<i className="far fa-heart notlike"></i>
-								</button>
+								<Likebutton id={element.id} />
 								<input className="concert_link" type="button" value="Info & Ticket" onClick={() => this.navigatePage(element.url)}/>
 							</div>
 						</div>

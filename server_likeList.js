@@ -21,61 +21,65 @@ router.get("/getLikeConcertsInfo/:username", (req, res) => {
 	});
 });
 
-router.post('/checkLikeItem/:username', (req, res) => {
-	let username = req.params.username;
-	let itemId = req.body.itemId;
-
-	cmd = "SELECT LikeItem FROM likes WHERE Username = ? AND ItemId = ? ;";
-	const connection = res.app.locals.connection;
-	connection.query(cmd, [username, itemId], (err, rows) => {
-		if(err){
-			res.status(400).send();
-		}else{
-			if(rows.length === 0 || rows[0].LikeItem == false){
-				res.send(false); //false: haven't click like or dislike this item.
-			}else{
-				res.send(true); //true: already liked this item.              
-			}
-		}
-	})
-})
-
+// while click the like button
 router.post('/likeConcert/:username', (req, res) => {
 	let username = req.params.username;
-	let itemId = req.body.itemId;
+	let concertId = req.body.id;
 
-	const connection = req.app.locals.connection; 
 	cmd = "SELECT like_concert FROM likes WHERE user_email = ? AND concert_id = ? ;";
 	insertCmd = "INSERT INTO likes VALUES(?, ?, ?);";
 	updateCmd = "UPDATE likes SET like_concert = ? WHERE user_email = ? AND concert_id = ? ;";
 
-	connection.query(cmd, [username, itemId], (err, rows) => {
-		if(err){
+	console.log("req.body.id: " + req.body.id);
+
+	db.get(cmd, [username, concertId], (err, row) => {
+		if(err) {
 			res.status(400).send();
-		} else{
-			if(rows.length === 0){
-				connection.query(insertCmd, [username, itemId, true], (err, rows) => {
+		} else {
+			if(row === undefined){
+				db.run(insertCmd, [username, concertId, 1], (err, row) => {
 					if(err){
 						console.log("insert error");
-						res.status(400).send();
-					}else{
-						res.status(200).send();
-					}
-				});
-			}else {
-				let like;
-				
-				if(rows[0].LikeItem == 1) {like = false;}
-				else {like = true;}
-
-				connection.query(updateCmd, [like, username, itemId], (err, subrows) =>{
-					if(err){
-						console.log("update error" + err);
 						res.status(400).send();
 					} else{
 						res.status(200).send();
 					}
 				});
+			} else {
+				let like;
+				
+				if(row.like_concert === 1) { like = 0; }
+				else { like = 1; }
+
+				db.run(updateCmd, [like, username, concertId], (err, subrow) => {
+					if(err){
+						console.log(err);
+						res.status(400).send();
+					} else{
+						res.status(200).send();
+						console.log(like);
+					}
+				});
+			}
+		}
+	});
+});
+
+// check if this event has been liked or not
+router.post('/checkLike/:username', (req, res) => {
+	let username = req.params.username;
+	let concertId = req.body.id;
+
+	cmd = "SELECT like_concert FROM likes WHERE user_email = ? AND concert_id = ? ;";
+
+	db.get(cmd, [username, concertId], (err, row) => {
+		if(err){
+			res.status(400).send();
+		}else{
+			if(row === undefined || row.like_concert === 0) {
+				res.send(false); //false: haven't click like or dislike this item.
+			}else{
+				res.send(true); //true: already liked this item.              
 			}
 		}
 	})

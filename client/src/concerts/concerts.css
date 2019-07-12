@@ -37,6 +37,19 @@
 	display: inline;
 }
 
+/*.liked {
+	color: red;
+	display: inline;
+}*/
+
+.like_button:hover .liked, .like_button .noliked {
+	display: none;
+}
+
+.like_button:hover .noliked {
+	display: inline;
+}
+
 .concert_img {
 	height: 100%;
 }

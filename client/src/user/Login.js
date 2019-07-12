@@ -54,8 +54,8 @@ class Login extends React.Component {
 				window.location.reload();
 			}
 		 
-		}).catch(function(error){ 
-			console.log(error);
+		}).catch((err) => { 
+			console.log(err);
 		});
 
 		this.toggle();
