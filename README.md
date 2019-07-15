@@ -11,7 +11,7 @@ open the backend server and client server
 	- make it automatically crawl the data once a day -> use crontab in mac to execute the crawler everyday
 
 2. web application
-	- like buttom function -> need to fix: click and reload immediatelly
+	- like buttom function: like to unlike not work, but unlike to like works
 	- keyword search function
 	- date filter function
 

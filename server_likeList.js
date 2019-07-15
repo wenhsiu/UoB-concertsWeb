@@ -44,7 +44,7 @@ router.post('/likeConcert/:username', (req, res) => {
 						console.log("insert error");
 						res.status(400).send();
 					} else{
-						res.status(200).send();
+						res.send(row);
 					}
 				});
 			} else {
@@ -57,8 +57,13 @@ router.post('/likeConcert/:username', (req, res) => {
 					if(err){
 						console.log(err);
 						res.status(400).send();
-					} else{
-						res.status(200).send();
+					} else {
+						if(like == 1) {
+							res.send(true);
+						} else {
+							res.send(false);
+						}
+						
 						console.log(like);
 					}
 				});

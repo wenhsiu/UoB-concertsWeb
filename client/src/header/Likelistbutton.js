@@ -6,25 +6,6 @@ class Likelistbutton extends React.Component {
 		super(props);
 
 		this.getCookie = this.getCookie.bind(this);
-		this.setButton = this.setButton.bind(this);
-	}
-
-	setButton() {
-		if(this.getCookie("username") !== "") {
-			return(
-				<NavLink to="/likelist">
-					<button className="like_list_button" type="button">
-						<i className="fas fa-heart "></i>
-					</button>
-				</NavLink>
-			)
-		} else {
-			return(
-				<button className="like_list_button d-none d-print-block" type="button">
-					<i className="fas fa-heart "></i>
-				</button>	
-			)
-		}
 	}
 
 	getCookie(cname) {
@@ -44,9 +25,21 @@ class Likelistbutton extends React.Component {
 	}
 
 	render() {
-		return(
-			<div>{this.setButton()}</div>
-		)
+		if(this.getCookie("username") !== "") {
+			return(
+				<NavLink to="/likelist">
+					<button className="like_list_button" type="button">
+						<i className="fas fa-heart "></i>
+					</button>
+				</NavLink>
+			)
+		} else {
+			return(
+				<button className="like_list_button d-none d-print-block" type="button">
+					<i className="fas fa-heart "></i>
+				</button>	
+			)
+		}
 	}
 }
 
