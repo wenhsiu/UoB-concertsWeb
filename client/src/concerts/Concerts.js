@@ -8,7 +8,7 @@ class Concerts extends React.Component {
 		super(props);
 		this.state = {
 			concertList: [],
-			isLiked: null
+			// isLiked: null
 		}
 
 		this.display = this.display.bind(this);
@@ -46,28 +46,28 @@ class Concerts extends React.Component {
 		return "";
 	}
 
-	checkLiked(e, id) {
-		let user = this.getCookie("username");
+	// checkLiked(e, id) {
+	// 	let user = this.getCookie("username");
 
-		e.persist();
-		this.setState({ id: id }, () => {
-			if(user !== "") {
-				e.preventDefault();
+	// 	e.persist();
+	// 	this.setState({ id: id }, () => {
+	// 		if(user !== "") {
+	// 			e.preventDefault();
 
-				axios.post('/checkLike/' + user, this.state).then((res) => {
-					this.setState({
-						isLiked: res.data
-					})
-					console.log("***" + this.state.isLiked);
-				})
-				.catch(function(err){
-					console.log(err);
-				});
-			}
-		});
+	// 			axios.post('/checkLike/' + user, this.state).then((res) => {
+	// 				this.setState({
+	// 					isLiked: res.data
+	// 				})
+	// 				console.log("***" + this.state.isLiked);
+	// 			})
+	// 			.catch(function(err){
+	// 				console.log(err);
+	// 			});
+	// 		}
+	// 	});
 
 		// console.log(this.state.isAdded);
-	}
+	// }
 
 	display() {
 		return(

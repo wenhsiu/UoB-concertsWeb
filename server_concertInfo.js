@@ -9,9 +9,11 @@ const picPath = path.join(__dirname, 'client', 'public', 'concerts_images');
 
 // get concert info from database
 router.get("/getConcertsInfo", (req, res) => {
-	let cmd = "SELECT * FROM concert_info ORDER BY date;"
-	let params = []
-	db.all(cmd, params, (err, rows) => {
+	let currDate = new Date().toISOString().split("T")[0].replace(/-/g, "/");
+	console.log("date: " + currDate);
+	let cmd = "SELECT * FROM concert_info WHERE date > ? ORDER BY date;"
+	
+	db.all(cmd, [currDate], (err, rows) => {
 		if(err){
 			res.status(400).send().end();
 		}else{

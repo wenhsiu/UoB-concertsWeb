@@ -101,6 +101,7 @@ class Likebutton extends React.Component {
 				if(res.status === 200) {
 					console.log("Add/delete successfully");
 					// window.location.reload();
+					this.setState({isLiked: res.data})
 				}
 			})
 			.catch((err) => {
@@ -126,6 +127,10 @@ class Likebutton extends React.Component {
 		}
 		return "";
 	}
+
+	// componentWillUpdate() {
+	// 	this.setLikeButton();
+	// }
 
 	render() {
 		return(

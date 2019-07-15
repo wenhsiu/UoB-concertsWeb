@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Likebutton from './Likebutton';
 import '../concerts/concerts.css';
 
 
@@ -81,9 +82,7 @@ class Likelist extends React.Component {
 							<p>Date: {element.date}</p>
 							<p>{element.description}</p>
 							<div className="text-right">
-								<button className="like_button" type="button">
-									<i class="fas fa-times cancel"></i>
-								</button>
+								<Likebutton id={element.id} />
 								<input className="concert_link" type="button" value="Info & Ticket" onClick={() => this.navigatePage(element.url)}/>
 							</div>
 						</div>

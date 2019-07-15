@@ -6,13 +6,15 @@ const db = require('./server_db.js');
 
 // get concert info from database which the user liked
 router.get("/getLikeConcertsInfo/:username", (req, res) => {
+	let currDate = new Date().toISOString().split("T")[0].replace(/-/g, "/");
+
 	let cmd = "SELECT c.id, c.title, c.date, c.description, c.url, c.img FROM concert_info c " +
 			  "INNER JOIN likes L ON c.id = L.concert_id " +
 			  "INNER JOIN members M ON M.email = L.user_email " +
-			  "WHERE M.email = ? AND L.like_concert = 1 ORDER BY date;";
+			  "WHERE M.email = ? AND L.like_concert = 1 AND c.date > ? ORDER BY date;";
 	
 
-	db.all(cmd, [req.params.username], (err, rows) => {
+	db.all(cmd, [req.params.username, currDate], (err, rows) => {
 		if(err){
 			res.status(400).send().end();
 		}else{

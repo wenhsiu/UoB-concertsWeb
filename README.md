@@ -8,8 +8,7 @@ open the backend server and client server
 
 1. crawler
 	- fix the crawler (get to nextpage) -> see if this works: selenium web driver
-	- make it automatically crawl the data once a day
-	- add it into the web server (??
+	- make it automatically crawl the data once a day -> use crontab in mac to execute the crawler everyday
 
 2. web application
 	- like buttom function -> need to fix: click and reload immediatelly
