@@ -2,27 +2,27 @@ import React from 'react';
 import axios from 'axios';
 import './concerts.css';
 import Likebutton from '../like/Likebutton';
+import ConcertList from './ConcertList';
 
 class Concerts extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			concertList: [],
-			// isLiked: null
 		}
 
 		this.display = this.display.bind(this);
 		this.getCookie = this.getCookie.bind(this);
-		// this.checkLiked = this.checkLiked.bind(this);
+		this.navigatePage = this.navigatePage.bind(this);
 	}
 
 	componentDidMount() {
 		axios.get("/getConcertsInfo").then((res) => {
-			console.log(res.data);
+			// console.log(res.data);
 			if(res.data.length === 0){return;}
 			this.setState({
 				concertList: res.data
-			})		
+			});
 		});
 	}
 
@@ -45,29 +45,6 @@ class Concerts extends React.Component {
 		}
 		return "";
 	}
-
-	// checkLiked(e, id) {
-	// 	let user = this.getCookie("username");
-
-	// 	e.persist();
-	// 	this.setState({ id: id }, () => {
-	// 		if(user !== "") {
-	// 			e.preventDefault();
-
-	// 			axios.post('/checkLike/' + user, this.state).then((res) => {
-	// 				this.setState({
-	// 					isLiked: res.data
-	// 				})
-	// 				console.log("***" + this.state.isLiked);
-	// 			})
-	// 			.catch(function(err){
-	// 				console.log(err);
-	// 			});
-	// 		}
-	// 	});
-
-		// console.log(this.state.isAdded);
-	// }
 
 	display() {
 		return(
@@ -92,7 +69,8 @@ class Concerts extends React.Component {
 
 	render() {
 		return(
-			<div>{this.display()}</div>
+			// <div>{this.display()}</div>
+			<ConcertList concert={this.state.concertList} navigate={this.navigatePage}></ConcertList>
 		)
 	}
 
