@@ -6,17 +6,30 @@ import Concerts from './concerts/Concerts';
 import Likelist from './like/Likelist';
 
 class Main extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			keyword: ''
+		}
+
+		this.handleKeyoWord = this.handleKeyoWord.bind(this);
+	}
+
+	handleKeyoWord(value) {
+        this.setState({keyword: value});
+    }
+
 	render() {
 		return(
 			<HashRouter>
 				{/*<!-- Header -->*/}
-				<Header />
+				<Header keyword={this.handleKeyoWord}/>
 				<div className="row">
 					{/*<!-- Sidebar -->*/}
 					<Sidebar />
 					{/*<!-- Content -->*/}
 					<div id="content" className="col-8">
-						<Route exact path="/" component={Concerts}/>
+						<Route exact path="/" render={(props) => <Concerts keyword={this.state.keyword} />} />
 						<Route path="/likelist" component={Likelist}/>
 					</div>	
 				</div>

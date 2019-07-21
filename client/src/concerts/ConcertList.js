@@ -7,49 +7,38 @@ class ConcertList extends React.Component {
 		super(props);
 		this.state = {
 			filtered: [],
+			keyword: ''
 		}
-		this.handleChange = this.handleChange.bind(this);
+		this.filtData = this.filtData.bind(this);
 	}
 
 	componentDidMount() {
 		this.setState({
 			filtered: this.props.concert
 		});
-		console.log(this.props.concert);
 	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			filtered: nextProps.concert
 		});
+		// this.filtData();
 	}
 
-	handleChange(e) {
-        // Variable to hold the original version of the list
-    	let currentList = [];
-        // Variable to hold the filtered list before putting into state
-    	let newList = [];
+	filtData() {
+		let currentList = [];
+		let newList = [];
 
-        // If the search bar isn't empty
-    	if (e.target.value !== "") {
-            // Assign the original list to currentList
+		if (this.props.keyword !== "") {
 			currentList = this.props.concert;
-
-            // Use .filter() to determine which items should be displayed
-            // based on the search terms
 			newList = currentList.filter(concert => {
-				const filter = e.target.value;
-                // check to see if the current list item includes the search term
-                // If it does, it will be added to newList. Using lowercase eliminates
-                // issues with capitalization in search terms and search content
+				const filter = this.props.keyword;
 				return concert.title.includes(filter);
 			});
 
 		} else {
-            // If the search bar is empty, set newList to original task list
 			newList = this.props.concert;
 		}
-        // Set the filtered state based on what our rules added to newList
 		this.setState({
 			filtered: newList
 		});
@@ -57,8 +46,6 @@ class ConcertList extends React.Component {
 
 	render() {
 		return(
-			<div>
-			<input className="search_area form-control mr-sm-2" type="search" placeholder="search concerts" onChange={this.handleChange}/>
 			<div>{this.state.filtered.map((element) => {
 				return(
 					<div className="row concert-info" key = {element.id}>
@@ -75,7 +62,7 @@ class ConcertList extends React.Component {
 					</div>
 				)
 			})}</div>
-			</div>
+			// </div>
 		)
 	}
 
