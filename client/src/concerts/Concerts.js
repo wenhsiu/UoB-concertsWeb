@@ -73,7 +73,7 @@ class Concerts extends React.Component {
 
 		return(
 			// <div>{this.display()}</div>
-			<ConcertList concert={this.state.concertList} keyword={this.state.keyword} navigate={this.navigatePage}></ConcertList>
+			<ConcertList concert={this.state.concertList} keyword={this.props.keyword} navigate={this.navigatePage}></ConcertList>
 		)
 	}
 

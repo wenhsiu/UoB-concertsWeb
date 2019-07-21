@@ -25,6 +25,12 @@ class ConcertList extends React.Component {
 		// this.filtData();
 	}
 
+	componentDidUpdate(prevProps) {
+		if(prevProps.keyword !== this.props.keyword) {
+			this.filtData();
+		}
+	}
+
 	filtData() {
 		let currentList = [];
 		let newList = [];
@@ -32,8 +38,11 @@ class ConcertList extends React.Component {
 		if (this.props.keyword !== "") {
 			currentList = this.props.concert;
 			newList = currentList.filter(concert => {
-				const filter = this.props.keyword;
-				return concert.title.includes(filter);
+				const lower = concert.title.toLowerCase();
+				const filter = this.props.keyword.toLowerCase();
+				// const filter = this.props.keyword;
+				// return concert.title.includes(filter);
+				return lower.includes(filter);
 			});
 
 		} else {

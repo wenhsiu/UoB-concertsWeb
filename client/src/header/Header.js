@@ -12,19 +12,25 @@ import Register from '../user/Register';
 class Header extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.state = {
-		// 	keyword: ''
-		// }
+		this.state = {
+			keyword: ''
+		}
 
 		this.handleChange = this.handleChange.bind(this);
+		// this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleChange(e) {
-		// If the search bar isn't empty
-		if (e.target.value !== "") { 
-			// this.setState({ keyword: e.target.value });
+		// if (e.target.value !== "") { 
+			this.setState({ keyword: e.target.value });
 			this.props.keyword(e.target.value);
-		}
+		// }
+	}
+
+	handleClick() {
+		 // e.preventDefault();
+		this.props.keyword(this.state.keyword);
+
 	}
 
 	render() {
@@ -38,7 +44,8 @@ class Header extends React.Component {
 				<div className="search col-4">
 					<form className="form-inline">
 						<input className="search_area form-control mr-sm-2" type="search" data-bind="textInput: filter, valueUpdate: 'afterkeydown'" placeholder="search concerts" onChange={(e) => this.handleChange(e)}/>
-						<button className="search_button btn my-2 my-sm-0" type="submit" value="search">
+						{/*按鈕會重新整理 網址會變成 localhost:3000/?#/ -> what the hell?? */}
+						<button className="search_button btn my-2 my-sm-0" type="submit" value="search" onClick={this.handleClick}>
 							<i className="fas fa-search"></i>
 						</button>
 					</form>
