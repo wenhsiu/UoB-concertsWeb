@@ -26,7 +26,7 @@ class Header extends React.Component {
 			this.props.keyword(e.target.value);
 		// }
 	}
-
+// 目前沒有作用
 	handleClick() {
 		 // e.preventDefault();
 		this.props.keyword(this.state.keyword);

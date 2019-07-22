@@ -9,15 +9,21 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			keyword: ''
+			keyword: '',
+			date: []
 		}
 
 		this.handleKeyoWord = this.handleKeyoWord.bind(this);
+		this.handleDate = this.handleDate.bind(this);
 	}
 
 	handleKeyoWord(value) {
-        this.setState({keyword: value});
-    }
+		this.setState({keyword: value});
+	}
+
+	handleDate(value) {
+		this.setState({date: value});
+	}
 
 	render() {
 		return(
@@ -26,7 +32,7 @@ class Main extends React.Component {
 				<Header keyword={this.handleKeyoWord}/>
 				<div className="row">
 					{/*<!-- Sidebar -->*/}
-					<Sidebar />
+					<Sidebar date={this.handleDate} />
 					{/*<!-- Content -->*/}
 					<div id="content" className="col-8">
 						<Route exact path="/" render={(props) => <Concerts keyword={this.state.keyword} />} />

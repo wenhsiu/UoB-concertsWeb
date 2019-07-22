@@ -7,19 +7,14 @@ import './datepicker.css';
 class Datepicker extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = this.getInitialState();
+		this.state = {
+			from: null,
+			to: null,
+			enteredTo: null
+		}
 		
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
-		this.handleResetClick = this.handleResetClick.bind(this);
-	}
-
-	getInitialState() {
-		return {
-			from: null,
-			to: null,
-			enteredTo: null, // Keep track of the last day for mouseEnter.
-		};
 	}
 
 	isSelectingFirstDay(from, to, day) {
@@ -31,8 +26,12 @@ class Datepicker extends React.Component {
 	handleDayClick(day) {
 		const { from, to } = this.state;
 		if (from && to && day >= from && day <= to) {
-			this.handleResetClick();
-			return;
+			this.setState({
+				from: null,
+				to: null,
+				enteredTo: null
+			});
+			// return;
 		}
 		if (this.isSelectingFirstDay(from, to, day)) {
 			this.setState({
@@ -44,7 +43,10 @@ class Datepicker extends React.Component {
 			this.setState({
 				to: day,
 				enteredTo: day,
+			}, function () {
+				this.props.date(this.state);
 			});
+			
 		}
 	}
 
@@ -57,14 +59,11 @@ class Datepicker extends React.Component {
 		}
 	}
 
-	handleResetClick() {
-		this.setState(this.getInitialState());
-	}
-
 	render(){
+		const today = new Date();
 		const { from, to, enteredTo } = this.state;
 		const modifiers = { start: from, end: enteredTo };
-		const disabledDays = { before: this.state.from };
+		// const disabledDays = { before: this.state.from };
 		const selectedDays = [from, { from, to: enteredTo }];
 		
 		return (
@@ -74,7 +73,7 @@ class Datepicker extends React.Component {
 					numberOfMonths={1}
 					fromMonth={from}
 					selectedDays={selectedDays}
-					disabledDays={disabledDays}
+					disabledDays={ {before: today }}
 					modifiers={modifiers}
 					onDayClick={this.handleDayClick}
 					onDayMouseEnter={this.handleDayMouseEnter}
