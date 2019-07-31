@@ -35,7 +35,7 @@ class Main extends React.Component {
 					<Sidebar date={this.handleDate} />
 					{/*<!-- Content -->*/}
 					<div id="content" className="col-8">
-						<Route exact path="/" render={(props) => <Concerts keyword={this.state.keyword} />} />
+						<Route exact path="/" render={(props) => <Concerts keyword={this.state.keyword} date={this.state.date} />} />
 						<Route path="/likelist" component={Likelist}/>
 					</div>	
 				</div>

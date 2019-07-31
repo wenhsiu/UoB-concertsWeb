@@ -7,9 +7,12 @@ class ConcertList extends React.Component {
 		super(props);
 		this.state = {
 			filtered: [],
-			keyword: ''
+			keyword: '',
+			date: []
 		}
-		this.filtData = this.filtData.bind(this);
+		this.filterByKeyword = this.filterByKeyword.bind(this);
+		this.filterByDate = this.filterByDate.bind(this);
+		this.getAllDates = this.getAllDates.bind(this);
 	}
 
 	componentDidMount() {
@@ -22,18 +25,23 @@ class ConcertList extends React.Component {
 		this.setState({
 			filtered: nextProps.concert
 		});
-		// this.filtData();
+		// this.filterByKeyword();
 	}
 
 	componentDidUpdate(prevProps) {
-		if(prevProps.keyword !== this.props.keyword) {
-			this.filtData();
+		// if(prevProps.keyword !== this.props.keyword) {
+		// 	this.filterByKeyword();
+		// }
+		if(prevProps.date !== this.props.date) {
+			this.filterByDate();
 		}
 	}
 
-	filtData() {
+	filterByKeyword() {
 		let currentList = [];
 		let newList = [];
+
+		// console.log(this.props.keyword);
 
 		if (this.props.keyword !== "") {
 			currentList = this.props.concert;
@@ -51,6 +59,49 @@ class ConcertList extends React.Component {
 		this.setState({
 			filtered: newList
 		});
+	}
+
+	filterByDate() {
+		let currentList = [];
+		let newList = [];
+		let start = this.props.date.from;
+		let end = this.props.date.to;
+		let targetDates = this.getAllDates(start, end);
+		console.log(targetDates);
+
+		if (start !== "" || end !== "") {
+			currentList = this.props.concert;
+			newList = currentList.filter(concert => {
+				// const filter = targetDates;
+				// for (const date of targetDates){
+					// console.log(date);
+					// return concert.date.includes(date);
+				// }
+				// return concert.date.includes();
+
+				return targetDates.every(date => {
+					return concert.date.includes(date);
+				});
+			});
+
+		} else {
+			newList = this.props.concert;
+		}
+		this.setState({
+			filtered: newList
+		});
+	}
+
+	getAllDates(start, end) {
+		let dateArray = [];
+		let current = start;
+
+		while(current <= end) {
+			dateArray.push(new Date(current).toISOString().split("T")[0].replace(/-/g, "/"));
+			current.setDate(current.getDate() + 1);
+		}
+
+		return dateArray
 	}
 
 	render() {
