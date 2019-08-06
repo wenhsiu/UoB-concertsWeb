@@ -1,4 +1,4 @@
-'use strick'
+'use strict'
 
 const express = require('express');
 const router = express.Router();
@@ -14,15 +14,15 @@ router.post('/UserRegister', (req, res) => {
 		return;
 	}
 
-	let item = req.body;
+	let user = req.body;
 	let cmd = "INSERT INTO members VALUES(?, ?);";
 
-	db.run(cmd, [item.account, item.password], (err, result) => {
+	db.run(cmd, [user.account, user.password], (err, result) => {
 		if(err) {
 			res.status(400).send();
 		}
 		console.log("record inserted");
-		res.status(200).send(item.account);
+		res.status(200).send(user.account);
 	});
 });
 
@@ -31,26 +31,34 @@ router.post('/UserRegister', (req, res) => {
 router.post('/UserLogin', (req, res) => {
 	// console.log(req.body);
 
-	if(!req.body.account || req.body.account.length === 0){
+	if(!req.body.userId || req.body.userId.length === 0){
 		res.status(400); 
 		return;
 	}
 
-	let item = req.body;
-	let cmd = "SELECT * FROM members WHERE email = ?";
+	let user = req.body;
+	let cmdSelect = "SELECT * FROM members WHERE id = ?";
+	let cmdInsert = "INSERT INTO members (id, name) VALUES(?, ?)";
 
-	db.get(cmd, [item.account], (err, row) => {
+	db.get(cmdSelect, [user.userId], (err, row) => {
 		// console.log(row);
 		if(err) {
 			res.status(400).send();
 		} else if(!row) {
-			console.log("email not found");
-			res.status(400).send();	
-		} else if(row.password !== item.password) {
-			console.log("forget password?");
-			res.status(400).send();
+			console.log("user id not found");
+			// res.status(400).send();
+			db.run(cmdInsert, [user.userId, user.name], (err, result) => {
+				if(err) {
+					res.status(400).send();
+				}
+				console.log(`user id: ${user.userId} record inserted`);
+				res.status(200).send(user.userId);
+			});
+		// } else if(row.password !== user.password) {
+		// 	console.log("forget password?");
+		// 	res.status(400).send();
 		} else {
-			res.status(200).send(row.email);
+			res.status(200).send(row.id);
 		}
 	});
 });

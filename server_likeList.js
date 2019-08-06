@@ -1,4 +1,4 @@
-'use strick'
+'use strict'
 
 const express = require('express');
 const router = express.Router();
@@ -9,9 +9,9 @@ router.get("/getLikeConcertsInfo/:username", (req, res) => {
 	let currDate = new Date().toISOString().split("T")[0].replace(/-/g, "/");
 
 	let cmd = "SELECT c.id, c.title, c.date, c.description, c.url, c.img FROM concert_info c " +
-			  "INNER JOIN likes L ON c.id = L.concert_id " +
-			  "INNER JOIN members M ON M.email = L.user_email " +
-			  "WHERE M.email = ? AND L.like_concert = 1 AND c.date > ? ORDER BY date;";
+			  "INNER JOIN likes L ON c.id = L.concertId " +
+			  "INNER JOIN members M ON M.id = L.userId " +
+			  "WHERE M.userId = ? AND L.likeConcert = 1 AND c.date > ? ORDER BY date;";
 	
 
 	db.all(cmd, [req.params.username, currDate], (err, rows) => {
@@ -28,9 +28,9 @@ router.post('/likeConcert/:username', (req, res) => {
 	let username = req.params.username;
 	let concertId = req.body.id;
 
-	cmd = "SELECT like_concert FROM likes WHERE user_email = ? AND concert_id = ? ;";
-	insertCmd = "INSERT INTO likes VALUES(?, ?, ?);";
-	updateCmd = "UPDATE likes SET like_concert = ? WHERE user_email = ? AND concert_id = ? ;";
+	let cmd = "SELECT likeConcert FROM likes WHERE userId = ? AND concertId = ? ;";
+	let insertCmd = "INSERT INTO likes VALUES(?, ?, ?);";
+	let updateCmd = "UPDATE likes SET likeConcert = ? WHERE userId = ? AND concertId = ? ;";
 
 	console.log("req.body.id: " + req.body.id);
 
@@ -50,7 +50,7 @@ router.post('/likeConcert/:username', (req, res) => {
 			} else {
 				let like;
 				
-				if(row.like_concert === 1) { like = 0; }
+				if(row.likeConcert === 1) { like = 0; }
 				else { like = 1; }
 
 				db.run(updateCmd, [like, username, concertId], (err, subrow) => {
@@ -77,13 +77,13 @@ router.post('/checkLike/:username', (req, res) => {
 	let username = req.params.username;
 	let concertId = req.body.id;
 
-	cmd = "SELECT like_concert FROM likes WHERE user_email = ? AND concert_id = ? ;";
+	let cmd = "SELECT likeConcert FROM likes WHERE userId = ? AND concertId = ? ;";
 
 	db.get(cmd, [username, concertId], (err, row) => {
 		if(err){
 			res.status(400).send();
 		}else{
-			if(row === undefined || row.like_concert === 0) {
+			if(row === undefined || row.likeConcert === 0) {
 				res.send(false); //false: haven't click like or dislike this item.
 			}else{
 				res.send(true); //true: already liked this item.              

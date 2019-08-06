@@ -4,6 +4,7 @@ import './header.css';
 import './header-small.css';
 import logo from './logo.svg';
 import Login from '../user/Login';
+import FbLogin from '../user/FbLogin';
 import Likelistbutton from './Likelistbutton';
 import Register from '../user/Register';
 // import Search from './Search'
@@ -13,7 +14,8 @@ class Header extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			keyword: ''
+			keyword: '',
+			isLoggedIn: null,
 		}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -31,6 +33,10 @@ class Header extends React.Component {
 		 // e.preventDefault();
 		this.props.keyword(this.state.keyword);
 
+	}
+
+	handleIsLoggedIn(value) {
+		this.setState({isLoggedIn: value});
 	}
 
 	render() {
@@ -51,8 +57,8 @@ class Header extends React.Component {
 					</form>
 				</div>
 				<div className="login_out col-4">
-					<Register />
-					<Login />
+					{/*<Register />*/}
+					<FbLogin />
 					<Likelistbutton />
 				</div>
 			</div>
