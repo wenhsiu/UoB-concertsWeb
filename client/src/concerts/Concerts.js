@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import './concerts.css';
-import Likebutton from '../like/Likebutton';
+import Sidebar from '../sidebar/Sidebar';
+// import Likebutton from '../like/Likebutton';
 import ConcertList from './ConcertList';
 // import Search from '../header/Search'
 
@@ -10,12 +11,12 @@ class Concerts extends React.Component {
 		super(props);
 		this.state = {
 			concertList: [],
-			keyword: ''
+			keyword: '',
+			date: ""
 		}
 
-		// this.display = this.display.bind(this);
-		// this.getCookie = this.getCookie.bind(this);
 		this.navigatePage = this.navigatePage.bind(this);
+		this.handleDate = this.handleDate.bind(this);
 	}
 
 	componentDidMount() {
@@ -31,49 +32,16 @@ class Concerts extends React.Component {
 	navigatePage(url) {
 		window.open(url);
 	}
-
-	// getCookie(cname) {
-	// 	var name = cname + "=";
-	// 	var decodedCookie = decodeURIComponent(document.cookie);
-	// 	var ca = decodedCookie.split(';');
-	// 	for(var i = 0; i <ca.length; i++) {
-	// 		var c = ca[i];
-	// 		while (c.charAt(0) === ' ') {
-	// 			c = c.substring(1);
-	// 		}
-	// 		if (c.indexOf(name) === 0) {
-	// 			return c.substring(name.length, c.length);
-	// 		}
-	// 	}
-	// 	return "";
-	// }
-
-	// display() {
-	// 	return(
-	// 		this.state.concertList.map((element) => {
-	// 			return(
-	// 				<div className="row concert-info" key = {element.id}>
-	// 					<img src={"concerts_images/" + element.img} className="concert_img col-5" alt={element.title}/>
-	// 					<div className="col-7 text-left">
-	// 						<h5>{element.title}</h5>
-	// 						<p>Date: {element.date}</p>
-	// 						<p>{element.description}</p>
-	// 						<div className="text-right">
-	// 							<Likebutton id={element.id} />
-	// 							<input className="concert_link" type="button" value="Info & Ticket" onClick={() => this.navigatePage(element.url)}/>
-	// 						</div>
-	// 					</div>
-	// 				</div>
-	// 			)
-	// 		})
-	// 	)
-	// }
+	handleDate(value) {
+		this.setState({date: value});
+	}
 
 	render() {
-
 		return(
-			// <div>{this.display()}</div>
-			<ConcertList concert={this.state.concertList} keyword={this.props.keyword} navigate={this.navigatePage} date={this.props.date}></ConcertList>
+			<div className="row">
+				<Sidebar date={this.handleDate} className="col-2"/>
+				<ConcertList concert={this.state.concertList} keyword={this.props.keyword} navigate={this.navigatePage} date={this.state.date}></ConcertList>
+			</div>
 		)
 	}
 

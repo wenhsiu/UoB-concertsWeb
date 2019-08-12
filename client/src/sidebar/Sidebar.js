@@ -13,7 +13,9 @@ class Sidebar extends React.Component {
 	}
 
 	handleChange(value) {
-		this.setState({ date: value});
+		this.setState({ date: value}, function () {
+			// console.log(value);
+			});
 		this.props.date(value);
 		// }
 	}

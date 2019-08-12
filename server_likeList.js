@@ -11,7 +11,7 @@ router.get("/getLikeConcertsInfo/:username", (req, res) => {
 	let cmd = "SELECT c.id, c.title, c.date, c.description, c.url, c.img FROM concert_info c " +
 			  "INNER JOIN likes L ON c.id = L.concertId " +
 			  "INNER JOIN members M ON M.id = L.userId " +
-			  "WHERE M.userId = ? AND L.likeConcert = 1 AND c.date > ? ORDER BY date;";
+			  "WHERE M.id = ? AND L.likeConcert = 1 AND c.date >= ? ORDER BY date;";
 	
 
 	db.all(cmd, [req.params.username, currDate], (err, rows) => {

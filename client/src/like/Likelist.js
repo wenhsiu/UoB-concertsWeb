@@ -94,7 +94,7 @@ class Likelist extends React.Component {
 
 	render() {
 		return(
-			<div>{this.display()}</div>
+			<div className= "col-8 likeList">{this.display()}</div>
 		)
 	}
 }

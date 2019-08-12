@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import './header.css';
 import './header-small.css';
 import logo from './logo.svg';
-import Login from '../user/Login';
+// import Login from '../user/Login';
 import FbLogin from '../user/FbLogin';
 import Likelistbutton from './Likelistbutton';
-import Register from '../user/Register';
+// import Register from '../user/Register';
 // import Search from './Search'
 
 
@@ -15,11 +15,11 @@ class Header extends React.Component {
 		super(props);
 		this.state = {
 			keyword: '',
-			isLoggedIn: null,
+			isLoggedIn: null
 		}
 
 		this.handleChange = this.handleChange.bind(this);
-		// this.handleClick = this.handleClick.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleChange(e) {
@@ -29,10 +29,17 @@ class Header extends React.Component {
 		// }
 	}
 // 目前沒有作用
-	handleClick() {
+	handleClick(e) {
 		 // e.preventDefault();
+		// this.setState({ keyword: e.target.value }, () => console.log(this.state.keyword));
+		console.log(this.state.keyword);
 		this.props.keyword(this.state.keyword);
 
+	}
+
+	reload(e) {
+		e.preventDefault();
+		window.location.reload()
 	}
 
 	handleIsLoggedIn(value) {
@@ -51,9 +58,9 @@ class Header extends React.Component {
 					<form className="form-inline">
 						<input className="search_area form-control mr-sm-2" type="search" data-bind="textInput: filter, valueUpdate: 'afterkeydown'" placeholder="search concerts" onChange={(e) => this.handleChange(e)}/>
 						{/*按鈕會重新整理 網址會變成 localhost:3000/?#/ -> what the hell?? */}
-						<button className="search_button btn my-2 my-sm-0" type="submit" value="search" onClick={this.handleClick}>
+						{<button className="search_button btn my-2 my-sm-0" type="submit" value="search" onClick={this.handleClick}>
 							<i className="fas fa-search"></i>
-						</button>
+						</button>}
 					</form>
 				</div>
 				<div className="login_out col-4">

@@ -137,12 +137,11 @@ class FbLogin extends React.Component {
 		let fbContent;
 
 		if(this.getCookie("username") !== "") {
-			fbContent = (<input className = "button_link" type="button" value="Logout" onClick={(e) => {this.facebookLogout(e)}} />)
+			fbContent = (<span><span> welcome!</span> <input className = "button_link" type="button" value="Logout" onClick={(e) => {this.facebookLogout(e)}} /></span>)
 		} else {
 			fbContent = (<input className = "button_link" type="button" value="Fb Login"onClick={(e) => {this.facebookLogin(e)}} />)
 		}
 		return(<span> {fbContent} </span>)
-		// return(<input className = "button_link" type="button" value="Login"onClick={() => this.facebookLogin()} />)
 	}
 }
 

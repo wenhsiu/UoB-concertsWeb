@@ -13,6 +13,8 @@ class ConcertList extends React.Component {
 		this.filterByKeyword = this.filterByKeyword.bind(this);
 		this.filterByDate = this.filterByDate.bind(this);
 		this.getAllDates = this.getAllDates.bind(this);
+
+		// console.log(props.concert);
 	}
 
 	componentDidMount() {
@@ -22,26 +24,27 @@ class ConcertList extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({
-			filtered: nextProps.concert
-		});
-		// this.filterByKeyword();
+		if(this.props.concert != nextProps.concert) {
+			this.setState({
+				filtered: nextProps.concert
+			});
+		}
+		
 	}
 
 	componentDidUpdate(prevProps) {
-		// if(prevProps.keyword !== this.props.keyword) {
-		// 	this.filterByKeyword();
-		// }
+		if(prevProps.keyword !== this.props.keyword) {
+			this.filterByKeyword();
+		}
 		if(prevProps.date !== this.props.date) {
 			this.filterByDate();
 		}
+		// console.log(this.state.filtered);
 	}
 
 	filterByKeyword() {
 		let currentList = [];
 		let newList = [];
-
-		// console.log(this.props.keyword);
 
 		if (this.props.keyword !== "") {
 			currentList = this.props.concert;
@@ -66,22 +69,22 @@ class ConcertList extends React.Component {
 		let newList = [];
 		let start = this.props.date.from;
 		let end = this.props.date.to;
-		let targetDates = this.getAllDates(start, end);
-		console.log(targetDates);
+		let targetDates;
 
-		if (start !== "" || end !== "") {
+		if(start == null && end === null) {
+			targetDates = [];
+		} else {
+			targetDates = this.getAllDates(start, end);
+		}
+
+		if (targetDates.length !== 0) {
 			currentList = this.props.concert;
 			newList = currentList.filter(concert => {
-				// const filter = targetDates;
-				// for (const date of targetDates){
-					// console.log(date);
-					// return concert.date.includes(date);
-				// }
-				// return concert.date.includes();
-
-				return targetDates.every(date => {
-					return concert.date.includes(date);
-				});
+				for (const date of targetDates){
+					if(concert.date.includes(date)) { 
+						return true; 
+					}
+				}
 			});
 
 		} else {
@@ -106,7 +109,7 @@ class ConcertList extends React.Component {
 
 	render() {
 		return(
-			<div>{this.state.filtered.map((element) => {
+			<div className="col-8">{this.state.filtered.map((element) => {
 				return(
 					<div className="row concert-info" key = {element.id}>
 						<img src={"concerts_images/" + element.img} className="concert_img col-5" alt={element.title}/>
@@ -121,8 +124,8 @@ class ConcertList extends React.Component {
 						</div>
 					</div>
 				)
-			})}</div>
-			// </div>
+			})}
+			</div>
 		)
 	}
 

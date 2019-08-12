@@ -37,10 +37,9 @@
 	display: inline;
 }
 
-/*.liked {
-	color: red;
-	display: inline;
-}*/
+.likeList {
+	margin: auto;
+}
 
 .like_button:hover .liked, .like_button .noliked {
 	display: none;
