@@ -1,4 +1,4 @@
-.from project_crawler.items import ProjectCrawlerItem
+from project_crawler.items import ProjectCrawlerItem
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings

@@ -94,3 +94,7 @@ ITEM_PIPELINES = {
 IMAGES_STORE = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/client/public/concerts_images'
 SQLITE_DB = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/db/concerts.db'
 SQLITE_TABLE = 'concert_info'
+
+# IMAGES_STORE = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/client/public/concerts_images'
+# SQLITE_DB = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/db/concerts.db'
+# SQLITE_TABLE = 'concert_info'
