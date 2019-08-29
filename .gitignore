@@ -29,6 +29,6 @@ logo.ai
 logo_icon.psd
 
 #database
-/db
-client/public/concerts_images/
+# /db
+# client/public/concerts_images/
 *.sql
