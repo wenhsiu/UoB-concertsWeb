@@ -49,28 +49,6 @@ class Likelist extends React.Component {
 		window.open(url);
 	}
 
-	setLikeButton(e, id) {
-		let user = this.getCookie("username");
-
-		e.persist();
-		this.setState({ id: id }, () => {
-			// console.log(this.state.id);
-			if(user !== "") {
-			e.preventDefault();
-			axios.post('/likeConcert/' + user, this.state).then((res) => {
-				if(res.status === 200) {
-					console.log("Add/delete successfully");
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		} else {
-			this.toggle();
-		}
-		});
-	}
-
 	display() {
 		return(
 			this.state.concertList.map((element) => {

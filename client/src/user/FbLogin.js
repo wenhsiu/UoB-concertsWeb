@@ -12,7 +12,7 @@ class FbLogin extends React.Component {
 			name: ""
 		};
 
-		this.checkLoginState = this.checkLoginState.bind(this);
+		// this.checkLoginState = this.checkLoginState.bind(this);
 		this.statusChangeCallback = this.statusChangeCallback.bind(this);
 		this.fetchDataFacebook = this.fetchDataFacebook.bind(this);
 		this.linkToDb = this.linkToDb.bind(this);
@@ -59,13 +59,13 @@ class FbLogin extends React.Component {
 		this.deleteCookie();
 	}
 	
-	checkLoginState() {
-		window.FB.getLoginStatus((res) => {
-			console.log("----------->")
-			console.log(res)
-			this.statusChangeCallback(res);
-		});
-	}
+	// checkLoginState() {
+	// 	window.FB.getLoginStatus((res) => {
+	// 		console.log("----------->")
+	// 		console.log(res)
+	// 		this.statusChangeCallback(res);
+	// 	});
+	// }
 	
 	statusChangeCallback(res) {
 		console.log('statusChangeCallback');

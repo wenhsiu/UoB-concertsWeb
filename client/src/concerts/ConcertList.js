@@ -24,7 +24,7 @@ class ConcertList extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props.concert != nextProps.concert) {
+		if(this.props.concert !== nextProps.concert) {
 			this.setState({
 				filtered: nextProps.concert
 			});

@@ -1,4 +1,4 @@
-from project_crawler.items import ProjectCrawlerItem
+.from project_crawler.items import ProjectCrawlerItem
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
@@ -30,21 +30,6 @@ class NtchSpider(scrapy.Spider):
 	name = 'NTCH'
 	start_urls = ['https://www.artsticket.com.tw/CKSCC2005/Product/Product00/ProductsCategoriesPage.aspx?ProductsCategoryId=8JNfZ4VZd5R%2b6AG8ujzh6g']
 
-	# def parse(self, response):
-	# 	target = response.css('div.program')
-	# 	web = "https://www.artsticket.com.tw/CKSCC2005/Product/Product00/"
-
-	# 	for t in target:
-
-	# 		item = ProjectCrawlerItem()
-	# 		item['id'] = t.css('a.programPic::attr(href)').get().split('=')[-1]
-	# 		item['title'] = t.css('a.programTitle::text').get()
-	# 		item['date'] = t.css('a.programTime::text').get()
-	# 		item['description'] = t.css('div.list-group-item-text::text').get()
-	# 		item['url'] = web + t.css('a.programPic::attr(href)').get().split('/')[-1]
-	# 		item['image_urls'] = [t.css('img::attr(src)').get()]
-
-	# 		yield item
 	def parse(self, response):
 		target = response.css('div.program')
 		web = "https://www.artsticket.com.tw/CKSCC2005/Product/Product00/"

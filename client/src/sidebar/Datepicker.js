@@ -16,7 +16,6 @@ class Datepicker extends React.Component {
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
 		this.handleResetClick = this.handleResetClick.bind(this);
-		console.log("constructor: " + this.state);
 	}
 
 	isSelectingFirstDay(from, to, day) {
@@ -37,13 +36,13 @@ class Datepicker extends React.Component {
 				to: null,
 				enteredTo: null
 			});
-			// return;
+			return;
 		}
 		if (this.isSelectingFirstDay(from, to, day)) {
 			this.setState({
 				from: day,
-				// to: null,
-				// enteredTo: null,
+				to: null,
+				enteredTo: null,
 			}, () => {
 				console.log(this.state);
 				console.log("first day: " + this.state);});

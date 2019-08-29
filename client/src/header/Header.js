@@ -3,11 +3,8 @@ import { NavLink } from 'react-router-dom';
 import './header.css';
 import './header-small.css';
 import logo from './logo.svg';
-// import Login from '../user/Login';
 import FbLogin from '../user/FbLogin';
 import Likelistbutton from './Likelistbutton';
-// import Register from '../user/Register';
-// import Search from './Search'
 
 
 class Header extends React.Component {
@@ -28,7 +25,7 @@ class Header extends React.Component {
 			this.props.keyword(e.target.value);
 		// }
 	}
-// 目前沒有作用
+// not work
 	handleClick(e) {
 		 // e.preventDefault();
 		// this.setState({ keyword: e.target.value }, () => console.log(this.state.keyword));
@@ -64,7 +61,6 @@ class Header extends React.Component {
 					</form>
 				</div>
 				<div className="login_out col-4">
-					{/*<Register />*/}
 					<FbLogin />
 					<Likelistbutton />
 				</div>

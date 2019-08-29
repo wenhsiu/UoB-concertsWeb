@@ -18,14 +18,9 @@ class ProjectCrawlerPipeline(object):
 class SQLitePipeline(object):
 	def open_spider(self, spider):
 		db_name = spider.settings.get('SQLITE_DB')
-		# db_name = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/db/concerts.db'
 
 		self.db_conn = sqlite3.connect(db_name)
 		self.db_cur = self.db_conn.cursor()
-
-	def close_spider(self, spider):
-		self.db_conn.commit()
-		self.db_conn.close()
 
 	def process_item(self, item, spider):
 		self.insert_db(item)
@@ -44,6 +39,10 @@ class SQLitePipeline(object):
 		cmd = """INSERT OR IGNORE INTO concert_info (id, title, date, description, url, img) VALUES(?, ?, ?, ?, ?, ?)"""
 		self.db_cur.execute(cmd, values)
 
+	def close_spider(self, spider):
+		self.db_conn.commit()
+		self.db_conn.close()
+
 
 class ProjectImagesPipeline(ImagesPipeline):
 	def get_media_requests(self, item, info):
@@ -51,7 +50,6 @@ class ProjectImagesPipeline(ImagesPipeline):
 			yield scrapy.Request(image_url)
 
 	def file_path(self, request, response=None, info=None):
-		# image_guid = request.meta.get('filename', '')
 		image_guid = request.url.split('/')[-1]
 		return 'full/%s' % (image_guid)
 

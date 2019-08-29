@@ -9,8 +9,7 @@ import scrapy
 
 
 class ProjectCrawlerItem(scrapy.Item):
-	# define the fields for your item here like:
-	# name = scrapy.Field()
+	# define the fields for your item here like: name = scrapy.Field()
 	id = scrapy.Field()
 	title = scrapy.Field()
 	date = scrapy.Field()
