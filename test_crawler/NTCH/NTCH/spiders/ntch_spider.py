@@ -44,12 +44,15 @@ class ntchSpider(scrapy.Spider):
 
 		for t in target:
 
-			item = NtchItem()
-			item['id'] = t.css('a.programPic::attr(href)').get().split('=')[-1]
+			item = ProjectCrawlerItem()
+			stringId = t.css('a.programPic::attr(href)').get()
+			if stringId is not None:
+				item['id'] = stringId.split('=')[-1]
 			item['title'] = t.css('a.programTitle::text').get()
 			item['date'] = t.css('a.programTime::text').get()
 			item['description'] = t.css('div.list-group-item-text::text').get()
-			item['url'] = web + t.css('a.programPic::attr(href)').get().split('/')[-1]
+			if stringId is not None:
+				item['url'] = web + stringId.split('/')[-1]
 			item['image_urls'] = [t.css('img::attr(src)').get()]
 
 			yield item
