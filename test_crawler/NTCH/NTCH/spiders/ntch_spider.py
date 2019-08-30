@@ -43,7 +43,7 @@ class ntchSpider(scrapy.Spider):
 
 		for t in target:
 
-			item = ProjectCrawlerItem()
+			item = NtchItem()
 			stringId = t.css('a.programPic::attr(href)').get()
 			if stringId is not None:
 				item['id'] = stringId.split('=')[-1]
