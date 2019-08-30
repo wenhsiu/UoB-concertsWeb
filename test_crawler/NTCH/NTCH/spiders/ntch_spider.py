@@ -1,7 +1,6 @@
 from NTCH.items import NtchItem
 import scrapy
 from scrapy.http import FormRequest
-from selenium import webdriver
 
 
 class ntchSpider(scrapy.Spider):
