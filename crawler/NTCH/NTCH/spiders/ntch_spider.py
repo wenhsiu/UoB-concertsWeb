@@ -52,6 +52,6 @@ class ntchSpider(scrapy.Spider):
 			item['description'] = t.css('div.list-group-item-text::text').get()
 			if stringId is not None:
 				item['url'] = web + stringId.split('/')[-1]
-			item['image_urls'] = [t.css('img::attr(src)').get()]
+			item['image_urls'] = [t.css('img::attr(data-echo)').get()]
 
 			yield item
