@@ -92,8 +92,8 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 
-IMAGES_STORE = '/home/alvina8418/UoB-concertsWeb/client/public/concerts_images'
 ERAIMAGESPIPELINE_IMAGE_EXPIRES = 10
 
-SQLITE_DB = '/home/alvina8418/UoB-concertsWeb/db/concerts.db'
+IMAGES_STORE = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/client/public/concerts_images'
+SQLITE_DB = '/Users/wenhsiuhsu/Desktop/UoB computer science/final project/project/db/concerts.db'
 SQLITE_TABLE = 'concert_info'

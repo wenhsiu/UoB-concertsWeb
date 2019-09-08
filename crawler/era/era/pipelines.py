@@ -53,7 +53,8 @@ class EraImagesPipeline(ImagesPipeline):
 
 	def file_path(self, request, response=None, info=None):
 		# image_guid = request.meta.get('filename', '')
-		image_guid = request.url.split('/')[-1].split('.')[0] + ".jpg"
+		image_guid = request.url.split('/')[-1]
+		# .split('.')[0] + ".jpg"
 		return 'full/%s' % (image_guid)
 
 	def item_completed(self, results, item, info):
